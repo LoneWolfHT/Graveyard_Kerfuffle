@@ -107,6 +107,11 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "   Customize Character   "
 
+[node name="Quit" type="Button" parent="EverythingElse"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "   Leave Game   "
+
 [node name="HSeparator3" type="HSeparator" parent="EverythingElse"]
 layout_mode = 2
 theme_override_constants/separation = 30
@@ -134,5 +139,6 @@ one_shot = true
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]
 [connection signal="pressed" from="EverythingElse/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="EverythingElse/Customize" to="." method="_on_customize_pressed"]
+[connection signal="pressed" from="EverythingElse/Quit" to="." method="_on_quit_pressed"]
 [connection signal="value_changed" from="EverythingElse/Volume" to="." method="_on_volume_value_changed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
