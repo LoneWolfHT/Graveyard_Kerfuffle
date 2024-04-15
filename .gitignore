@@ -1,0 +1,10 @@
+# Godot 4+ specific ignores
+.godot/
+*.import
+*.bak
+*.wav
+package-lock.json
+server/node_modules
+EXPORT/
+*.xcf
+export_presets.cfg

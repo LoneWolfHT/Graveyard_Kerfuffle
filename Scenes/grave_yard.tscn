@@ -1,0 +1,206 @@
+[gd_scene load_steps=12 format=3 uid="uid://cwq2scibj8rer"]
+
+[ext_resource type="Script" path="res://Scenes/grave_yard.gd" id="1_5hicp"]
+[ext_resource type="Texture2D" uid="uid://bjrqmmdhjq1wc" path="res://Textures/Graveyard.png" id="1_bt1at"]
+[ext_resource type="PackedScene" uid="uid://woab52xneocy" path="res://Entities/player.tscn" id="2_i0303"]
+[ext_resource type="Texture2D" uid="uid://b8wv8sh7gced5" path="res://Textures/Grave.png" id="3_yqaly"]
+[ext_resource type="Texture2D" uid="uid://cin20wxt105yg" path="res://Textures/Border.png" id="4_jln4o"]
+[ext_resource type="PackedScene" uid="uid://cx4cv7yix0tv1" path="res://Scenes/character_edit.tscn" id="6_7q54t"]
+[ext_resource type="PackedScene" uid="uid://g3ts0jl3ejum" path="res://Entities/undead.tscn" id="7_vdasv"]
+[ext_resource type="AudioStream" uid="uid://c47kpy5n5kcr2" path="res://Audio/Success.ogg" id="8_1piqv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3r8lk"]
+size = Vector2(285, 30)
+
+[sub_resource type="Gradient" id="Gradient_0lwva"]
+colors = PackedColorArray(1, 0.921569, 0.219608, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_6ccg2"]
+gradient = SubResource("Gradient_0lwva")
+width = 42
+
+[node name="GraveYard" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_5hicp")
+
+[node name="BG" type="TextureRect" parent="."]
+offset_right = 1280.0
+offset_bottom = 1280.0
+texture = ExtResource("1_bt1at")
+stretch_mode = 4
+
+[node name="Graves" type="Node2D" parent="."]
+
+[node name="Grave" type="Sprite2D" parent="Graves" groups=["grave"]]
+texture_filter = 1
+position = Vector2(122, 345.5)
+scale = Vector2(5, 5)
+texture = ExtResource("3_yqaly")
+
+[node name="Grave2" type="Sprite2D" parent="Graves" groups=["grave"]]
+texture_filter = 1
+position = Vector2(287, 457)
+scale = Vector2(5, 5)
+texture = ExtResource("3_yqaly")
+
+[node name="Grave3" type="Sprite2D" parent="Graves" groups=["grave"]]
+texture_filter = 1
+position = Vector2(137, 612)
+scale = Vector2(5, 5)
+texture = ExtResource("3_yqaly")
+
+[node name="Grave5" type="Sprite2D" parent="Graves" groups=["grave"]]
+texture_filter = 1
+position = Vector2(457, 507)
+scale = Vector2(5, 5)
+texture = ExtResource("3_yqaly")
+
+[node name="Grave6" type="Sprite2D" parent="Graves" groups=["grave"]]
+texture_filter = 1
+position = Vector2(427, 242)
+scale = Vector2(5, 5)
+texture = ExtResource("3_yqaly")
+
+[node name="Grave7" type="Sprite2D" parent="Graves" groups=["grave"]]
+texture_filter = 1
+position = Vector2(632, 117)
+scale = Vector2(5, 5)
+texture = ExtResource("3_yqaly")
+
+[node name="Grave8" type="Sprite2D" parent="Graves" groups=["grave"]]
+texture_filter = 1
+position = Vector2(817, 247)
+scale = Vector2(5, 5)
+texture = ExtResource("3_yqaly")
+
+[node name="Grave9" type="Sprite2D" parent="Graves" groups=["grave"]]
+texture_filter = 1
+position = Vector2(1017, 157)
+scale = Vector2(5, 5)
+texture = ExtResource("3_yqaly")
+
+[node name="Grave11" type="Sprite2D" parent="Graves" groups=["grave"]]
+texture_filter = 1
+position = Vector2(1167, 282)
+scale = Vector2(5, 5)
+texture = ExtResource("3_yqaly")
+
+[node name="Grave12" type="Sprite2D" parent="Graves" groups=["grave"]]
+texture_filter = 1
+position = Vector2(997, 387)
+scale = Vector2(5, 5)
+texture = ExtResource("3_yqaly")
+
+[node name="Grave13" type="Sprite2D" parent="Graves" groups=["grave"]]
+texture_filter = 1
+position = Vector2(817, 512)
+scale = Vector2(5, 5)
+texture = ExtResource("3_yqaly")
+
+[node name="Grave14" type="Sprite2D" parent="Graves" groups=["grave"]]
+texture_filter = 1
+position = Vector2(972, 627)
+scale = Vector2(5, 5)
+texture = ExtResource("3_yqaly")
+
+[node name="Grave15" type="Sprite2D" parent="Graves" groups=["grave"]]
+texture_filter = 1
+position = Vector2(1167, 612)
+scale = Vector2(5, 5)
+texture = ExtResource("3_yqaly")
+
+[node name="RelativeGrave" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(632, 342)
+scale = Vector2(5, 5)
+texture = ExtResource("3_yqaly")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(283, 37, 423, 29, 510, 42, 580, 6, 667, 6, 827, 31, 867, 16, 955, 33, 1048, 3, 1141, 22, 1220, 8, 1265, 36, 1267, 133, 1253, 223, 1268, 292, 1250, 377, 1267, 427, 1251, 504, 1270.4, 617.064, 1271, 682, 1201, 716, 905.514, 716.749, 843, 700, 772, 717, 752, 742, 477, 742, 457, 722, 352, 687, 267, 712, 189, 697, 99, 714, 19, 681, 25, 480, 2, 384, 18, 299, 10, 203, 44, 145, 58, 76, 135, 16, -102, -33, -68, 918, 1396, 833, 1363, -116, -149, -52)
+
+[node name="Player" parent="." instance=ExtResource("2_i0303")]
+position = Vector2(616, 671)
+
+[node name="ShootAreaMin" type="Node2D" parent="."]
+position = Vector2(57, 62)
+
+[node name="ShootAreaMax" type="Node2D" parent="."]
+position = Vector2(1217, 676)
+scale = Vector2(2.25036, 1.5102)
+
+[node name="Border" type="TextureRect" parent="."]
+z_index = 2
+texture_filter = 1
+offset_right = 1280.0
+offset_bottom = 1280.0
+texture = ExtResource("4_jln4o")
+stretch_mode = 4
+
+[node name="CharacterEdit" parent="." node_paths=PackedStringArray("target") instance=ExtResource("6_7q54t")]
+visible = false
+target = NodePath("../Relative")
+
+[node name="Relative" parent="." groups=["relative"] instance=ExtResource("7_vdasv")]
+visible = false
+position = Vector2(632, 357)
+SPEED = 100
+ACTIVE = false
+
+[node name="RelativeTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="Fleezone" type="Area2D" parent="."]
+visible = false
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fleezone"]
+position = Vector2(612, 727)
+shape = SubResource("RectangleShape2D_3r8lk")
+
+[node name="ColorRect" type="TextureRect" parent="Fleezone"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 852.0
+offset_top = 678.0
+offset_right = 903.0
+offset_bottom = 1158.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.5708
+texture = SubResource("GradientTexture1D_6ccg2")
+flip_h = true
+
+[node name="FleeTimer" type="Timer" parent="Fleezone"]
+one_shot = true
+
+[node name="GameOver" type="Label" parent="."]
+visible = false
+top_level = true
+light_mask = 2
+visibility_layer = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 42
+text = "Game Over"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Success" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_1piqv")
+
+[connection signal="timeout" from="RelativeTimer" to="." method="_on_relative_timer_timeout"]
+[connection signal="body_entered" from="Fleezone" to="." method="_on_fleezone_body_entered"]
+[connection signal="timeout" from="Fleezone/FleeTimer" to="." method="_on_flee_timer_timeout"]

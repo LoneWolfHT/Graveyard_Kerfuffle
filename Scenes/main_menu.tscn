@@ -1,0 +1,138 @@
+[gd_scene load_steps=5 format=3 uid="uid://hclrc4tb733a"]
+
+[ext_resource type="Script" path="res://Scenes/main_menu.gd" id="1_hh8xk"]
+[ext_resource type="Texture2D" uid="uid://cin20wxt105yg" path="res://Textures/Border.png" id="2_fkolr"]
+
+[sub_resource type="Gradient" id="Gradient_nuva1"]
+colors = PackedColorArray(1, 1, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qfdx3"]
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_hh8xk")
+
+[node name="BG" type="ColorRect" parent="."]
+show_behind_parent = true
+z_index = -1
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0.156863, 0.188235, 0.215686, 1)
+
+[node name="BG2" type="ColorRect" parent="."]
+offset_left = 431.0
+offset_right = 849.0
+offset_bottom = 720.0
+color = Color(0.156863, 0.188235, 0.215686, 1)
+
+[node name="Loading" type="Label" parent="."]
+z_index = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 1280.0
+offset_bottom = 720.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 42
+text = "Loading Game..."
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+z_index = -1
+position = Vector2(640, 367)
+amount = 30
+lifetime = 3.0
+preprocess = 0.8
+speed_scale = 1.1
+explosiveness = 0.3
+emission_shape = 2
+emission_sphere_radius = 128.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+radial_accel_min = 100.0
+radial_accel_max = 100.0
+scale_amount_min = 5.0
+scale_amount_max = 5.0
+color_initial_ramp = SubResource("Gradient_nuva1")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+use_threads = true
+timeout = 10.0
+
+[node name="Border" type="TextureRect" parent="."]
+z_index = 1
+texture_filter = 1
+offset_right = 1280.0
+offset_bottom = 1280.0
+texture = ExtResource("2_fkolr")
+stretch_mode = 4
+
+[node name="EverythingElse" type="VBoxContainer" parent="."]
+offset_top = 36.0
+offset_right = 1280.0
+offset_bottom = 720.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="HSeparator2" type="HSeparator" parent="EverythingElse"]
+layout_mode = 2
+theme_override_constants/separation = 30
+theme_override_styles/separator = SubResource("StyleBoxEmpty_qfdx3")
+
+[node name="Title" type="Label" parent="EverythingElse"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 42
+text = "Graveyard Kerfuffle"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="EverythingElse"]
+layout_mode = 2
+theme_override_constants/separation = 30
+theme_override_styles/separator = SubResource("StyleBoxEmpty_qfdx3")
+
+[node name="Play" type="Button" parent="EverythingElse"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "   Play Game   "
+
+[node name="Customize" type="Button" parent="EverythingElse"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "   Customize Character   "
+
+[node name="HSeparator3" type="HSeparator" parent="EverythingElse"]
+layout_mode = 2
+theme_override_constants/separation = 30
+theme_override_styles/separator = SubResource("StyleBoxEmpty_qfdx3")
+
+[node name="VolumeLabel" type="Label" parent="EverythingElse"]
+layout_mode = 2
+text = "Game Volume"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Volume" type="HScrollBar" parent="EverythingElse"]
+custom_minimum_size = Vector2(300, 12)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+min_value = -20.0
+max_value = 20.0
+step = 1.0
+rounded = true
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]
+[connection signal="pressed" from="EverythingElse/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="EverythingElse/Customize" to="." method="_on_customize_pressed"]
+[connection signal="value_changed" from="EverythingElse/Volume" to="." method="_on_volume_value_changed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://h36w7e7ljva5"]
+
+[ext_resource type="Script" path="res://Objects/CustomizeOption.gd" id="1_5ievd"]
+
+[node name="CustomizeOption" type="HBoxContainer"]
+script = ExtResource("1_5ievd")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "Head:"
+
+[node name="VSeparator" type="VSeparator" parent="."]
+layout_mode = 2
+
+[node name="Selected" type="SpinBox" parent="."]
+layout_mode = 2
+alignment = 1
+update_on_text_changed = true
+
+[node name="Setup" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+autostart = true
+
+[connection signal="value_changed" from="Selected" to="." method="_on_selected_value_changed"]
+[connection signal="timeout" from="Setup" to="." method="_on_setup_timeout"]

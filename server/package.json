@@ -1,0 +1,13 @@
+{
+  "name": "graveyard_kerfuffle_server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "server": "node index.js"
+  },
+  "author": "LandarVargan",
+  "license": "MIT",
+  "dependencies": {
+  }
+}

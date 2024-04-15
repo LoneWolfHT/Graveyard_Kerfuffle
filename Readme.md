@@ -1,0 +1,1 @@
+set ProjectSettings.editor/export/convert_text_resources_to_binary to false?

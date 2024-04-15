@@ -1,0 +1,189 @@
+[gd_scene load_steps=12 format=3 uid="uid://cxs02qmaflfva"]
+
+[ext_resource type="Script" path="res://Entities/meteor.gd" id="1_4nukb"]
+[ext_resource type="Texture2D" uid="uid://cj40vuaw5mgp8" path="res://Textures/Target.png" id="1_x3jl8"]
+[ext_resource type="AudioStream" uid="uid://wf7b8vhvxtyr" path="res://Audio/Pentagram.ogg" id="2_ouc06"]
+[ext_resource type="Texture2D" uid="uid://cu083f4j87lim" path="res://Textures/Meteor.png" id="3_n44t2"]
+[ext_resource type="AudioStream" uid="uid://biw0vcqvo5uxh" path="res://Audio/Boom.ogg" id="3_rey34"]
+
+[sub_resource type="Animation" id="Animation_j22pf"]
+resource_name = "Blast"
+length = 1.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Meteor:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(367, -318), Vector2(1.52588e-05, 6.99998)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Meteor:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Boom:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_sqcf4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Meteor:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(222, -173)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Meteor:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Boom:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y6tw1"]
+_data = {
+"Blast": SubResource("Animation_j22pf"),
+"RESET": SubResource("Animation_sqcf4")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dux7v"]
+radius = 87.023
+
+[sub_resource type="Gradient" id="Gradient_x1f4g"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.248619, 1)
+colors = PackedColorArray(1, 1, 0.176471, 1, 1, 0.133333, 0, 0.862745)
+
+[sub_resource type="Curve" id="Curve_b0idx"]
+min_value = -200.0
+max_value = 200.0
+_data = [Vector2(0, -35.433), 0.0, 0.0, 0, 0, Vector2(0.117949, 41.3386), 0.0, 0.0, 0, 0, Vector2(0.31282, -30.3149), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="Meteor" type="Node2D"]
+script = ExtResource("1_4nukb")
+
+[node name="Spawn" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_ouc06")
+autoplay = true
+
+[node name="Boom" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_rey34")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_y6tw1")
+}
+
+[node name="Texture" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(5, 5)
+texture = ExtResource("1_x3jl8")
+
+[node name="Area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area"]
+shape = SubResource("CircleShape2D_dux7v")
+
+[node name="Particles" type="CPUParticles2D" parent="."]
+z_index = 2
+amount = 13
+lifetime = 2.0
+explosiveness = 0.9
+lifetime_randomness = 0.5
+local_coords = true
+emission_shape = 2
+emission_sphere_radius = 75.0
+spread = 180.0
+gravity = Vector2(0, 0)
+orbit_velocity_min = -0.5
+orbit_velocity_max = 0.5
+radial_accel_min = -50.0
+radial_accel_max = -50.0
+scale_amount_min = 5.0
+scale_amount_max = 5.0
+color = Color(1, 0.615686, 0, 1)
+color_ramp = SubResource("Gradient_x1f4g")
+
+[node name="ExplosionParticles" type="CPUParticles2D" parent="."]
+z_index = 2
+emitting = false
+amount = 30
+one_shot = true
+explosiveness = 0.9
+local_coords = true
+emission_shape = 1
+emission_sphere_radius = 24.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 343.99
+initial_velocity_max = 343.99
+linear_accel_min = -36.59
+linear_accel_max = -36.59
+linear_accel_curve = SubResource("Curve_b0idx")
+scale_amount_min = 5.0
+scale_amount_max = 5.0
+color_ramp = SubResource("Gradient_x1f4g")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[node name="Meteor" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+position = Vector2(222, -173)
+scale = Vector2(5, 5)
+texture = ExtResource("3_n44t2")
+
+[connection signal="body_entered" from="Area" to="." method="_on_area_body_entered"]
+[connection signal="body_exited" from="Area" to="." method="_on_area_body_exited"]
+[connection signal="finished" from="ExplosionParticles" to="." method="_on_explosion_particles_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,57 @@
+[gd_scene load_steps=5 format=3 uid="uid://cpjbt843dp2j0"]
+
+[ext_resource type="Script" path="res://Scenes/game_over_kill.gd" id="1_8ejat"]
+[ext_resource type="AudioStream" uid="uid://jl6011i4bdnp" path="res://Audio/Nooo.ogg" id="2_8shom"]
+[ext_resource type="Script" path="res://Scenes/GameOverButton.gd" id="2_rigxe"]
+[ext_resource type="AudioStream" uid="uid://biw0vcqvo5uxh" path="res://Audio/Boom.ogg" id="4_0hpbc"]
+
+[node name="GameOverKill" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8ejat")
+
+[node name="Nooo" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_8shom")
+autoplay = true
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 138.0
+offset_top = 83.0
+offset_right = -138.0
+offset_bottom = -398.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.5
+offset_top = -358.0
+offset_right = 64.5
+offset_bottom = -327.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "    Game Over    "
+script = ExtResource("2_rigxe")
+
+[node name="Boom" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_0hpbc")
+volume_db = 2.0
+pitch_scale = 1.4
+autoplay = true
