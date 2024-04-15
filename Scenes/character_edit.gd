@@ -18,6 +18,7 @@ func _ready():
 
 		$Sections/Name.visible = false
 		$Sections/Submit.visible = false
+		$Sections/SubmitNote.visible = false
 
 		display = preload("res://Entities/player.tscn").instantiate()
 		display.ACTIVE = false

@@ -14,9 +14,9 @@ config/name="Graveyard Kerfuffle"
 run/main_scene="res://Scenes/main_menu.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 boot_splash/bg_color=Color(0.156863, 0.188235, 0.215686, 1)
-boot_splash/image="res://Textures/Border.png"
+boot_splash/image="res://Splash.png"
 boot_splash/use_filter=false
-config/icon="res://icon.svg"
+config/icon="res://EXPORT/Logo.png"
 
 [autoload]
 
